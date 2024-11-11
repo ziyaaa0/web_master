@@ -12,3 +12,7 @@ console.log(show);
 function deleteFunc() {
   alert('삭제 버튼을 클릭했습니다.');
 }
+
+//console.log()
+//document.write() <-함수
+document.write('<ul><li>Apple</li><li>Banana</li></ul>')
