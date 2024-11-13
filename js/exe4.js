@@ -10,7 +10,19 @@ document.querySelector('span').remove(); //요소(element)삭제
 
 
 
-let numAry = [90, 45, 85, 75, 50];
+// let numAry = [90, 45, 85, 75, 50];
+
+
+
+
+
+let numAry = [];
+for (let i = 1; i <=5; i++){
+
+let inputValue = prompt('점수 입력');
+numAry.push(parseInt(inputValue));
+}
+
 let sum = 0;
 let average = 0;
 let max = 0;
@@ -19,11 +31,15 @@ let min = 100;
 for (let i = 0; i < numAry.length; i++) {
   sum += numAry[i];
   if (max < numAry[i]) {
-    max = numAry;
-  } if (min > numAry[i]) {
-    min = numAry;
+    max = numAry[i];
+  } 
+  if (min > numAry[i]) {
+    min = numAry[i];
   }
   average = sum/numAry.length;
 }
 
 console.log(`우리반 평균은 ${average}, 최고점은 ${max}, 최저점은 ${min}`)
+
+
+

@@ -9,17 +9,23 @@
     width: 100px;
     height: 100px;
   }
-  #inputValue{
-  }
+  
   </style>
 </head>
 <body>
-  <span>친구이름:</span> <input id="inputValue"><button onclick="addFriendFnc()" id="addBtn">등록</button>
+  <span>친구이름:</span> <input id="name">
+  <span>친구나이:</span> <input id="age">
+  <button onclick="friendListFnc()" id="addBtn">등록</button>
   <div id="show"> 
+    <span>결과값1:</span><p class="result"></p>
+    <span>결과값2:</span><p class="value"></p>
   
     <!-- <p>홍길동</p> : innerHTML -->
+    <!-- <table border='2'><thead><tr><th>이름<th><tr></thead>-->
+    <!-- <tbody><tr><td>홍길동</td></tr><tr><td>김길동</td></tr><tr><td>박길동</td></tr><tr><td>최길동</td></tr>-->
+    <!--</tbody></table>-->
   </div>
-  <script src="js/exe4.js">  </script>
+  <script src="js/function1.js">  </script>
  
 </body>
 </html>
