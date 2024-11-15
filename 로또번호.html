@@ -37,28 +37,50 @@
     <div id="container">
         <h1>로또 번호 발생기</h1>
         <button type="button" id="btn">클릭</button>
-        <div id="lotto"><span>23</span><span>33</span></div>
+        <div id="lotto"><span>23</span><span>33</span><span>23</span><span>33</span><span>23</span><span>33</span></div>
     </div>
-    <script>        
-        function randomNum() {
-            let numAry = [];
-            for (let i = 1; i <= 6; i++) {
-                let temp = parseInt(Math.random() * 45)+1;
-                numAry.push(temp);
+    <script>
+        //1. button 클릭 이벤트 
+        document.querySelector('#btn').addEventListener('click', (e) => {
+            let ary = generateNumber();
+            let str = '';
+            for (let i = 0; i < ary.length; i++) {
+                str += '<span>' + ary[i] + '</span>';
             }
-            console.log(numAry);
+            document.querySelector('#lotto').innerHTML = str;
+        })
+
+
+        //2. 임의의 6개 번호 생성 
+
+        function generateNumber() {
+            let numAry = [];
+            for (let i = 0; i < 6;) {
+                let temp = parseInt(Math.random() * 45) + 1;
+                if (dupValueCheck(numAry, temp) == -1) {
+                    numAry[i] = (temp);
+                    i++
+                }
+            }
             return numAry;
-        } 
+        }
 
 
+        //3.중복값 제거
+        function dupValueCheck(ary = [], checkNum = '') {
+            // 배열, 값 체크기능.
+            // 배열에 찾는 값이 있으면 인덱스값을 반환, -1 반환.
+            for (let i = 0; i < ary.length; i++) {
+                if (ary[i] == checkNum) {
+                    return i;
+                }
+            }
+            return -1;
+        }
 
-        //이벤트
-        // document.querySelector('#btn').addEventListener('click',randomNum) {
-        //     console.log('클릭');
-        //  document.querySelector('#lotto').span = numAry;
-        // }
-        
-
+        let tempAry = [20, 45, 30, 17]
+        let num = 17;
+        console.log(dupValueCheck(tempAry, num));
     </script>
 </body>
 
