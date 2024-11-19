@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>select</select></title>
+  <style>
+    #container {
+      width: 500px;
+      height: 300px;
+      background-color: antiquewhite;
+    }
+
+    span {
+      display: inline-block;
+      font-size: large;
+      width: 110px;
+      height: 20px;
+      padding: 1px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div id="container">
+    입력 : <input type="text" id="userValue">
+    <button id="deleteWord">삭제</button> <br>
+  </div>
+
+  <script>
+    let str =
+      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos itaque est cupiditate optio id! Quo optio, aliquid dolorem sit nam culpa quod deleniti repudiandae quae quasi, debitis accusamus odit officia!'
+    let strAry = str.split(' ');
+    str = ' ';
+    strAry.forEach(word => {
+      let span = document.createElement('span');
+      span.innerText = word;
+      document.querySelector('#container').appendChild(span);
+    });
+
+    document.querySelector('#deleteWord').addEventListener('click', (e) => {
+      document.querySelectorAll('span').forEach((item) => {
+        if (item.innerText == document.querySelector('input').value){
+          item.remove();}
+      })
+    })
+
+
+
+
+
+    document.querySelector('body input[type = "text"]').innerText
+  </script>
+
+
+</body>
+
+</html>
