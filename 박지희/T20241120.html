@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T20241120.html</title>
+  <style>
+    #container {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    .table1 th {
+      width: 200px;
+      background-color: yellow;
+    }
+
+    #btn-float {
+      float: right;
+      margin-top: 20px;
+      margin-right: 100px;
+    }
+
+    li {
+      list-style-type: none;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    li button {
+      width: 100px;
+    }
+
+    .table2 th{
+      background-color: rgb(82, 82, 82);
+      color: #fff;
+      width: 800px;
+      padding: 10px;
+      
+    }
+
+    .table2 td{
+      background-color: #fff;
+      
+      text-align: center;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <table class="table1">
+      <tr>
+        <th>도서코드</th>
+        <td><input type="text" class="form-control" name="bookCode" id="bookCode"></td>
+      </tr>
+      <tr>
+        <th>도서명</th>
+        <td><input type="text" class="form-control" name="bookName" id="bookName" ></td>
+      </tr>
+      <tr>
+        <th>저자</th>
+        <td><input type="text" class="form-control" name="author" id="author"></td>
+      </tr>
+      <tr>
+        <th>출판사</th>
+        <td><input type="text" class="form-control" name="press"  id="press"></td>
+      </tr>
+      <tr>
+        <th>금액</th>
+        <td><input type="text" class="form-control" name="price" id="price" ></td>
+      </tr>
+
+      <div id="btn-float">
+        <ul>
+          <li><button id="save">저장</button></li>
+          <li> <button id="remove">선택삭제</button></li>
+        </ul>
+      </div>
+
+    </table>
+    <table class="table2">
+      <thead>
+        <tr>
+          <th><input type="checkbox" name="" id=""></th>
+          <th>도서코드</th>
+          <th>도서명</th>
+          <th>저자</th>
+          <th>출판사</th>
+          <th>가격</th>
+          <th>삭제</th>
+        </tr>
+      </thead>
+      <tbody id="list">
+      </tbody>
+    </table>
+  </div>
+  <script src="bookList.js"></script>
+  <script src="T20241120.js"></script>
+</body>
+
+</html>

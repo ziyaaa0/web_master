@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <select multiple style="height:150px">
+    <option>Row1</option>
+    <option>Row2</option>
+    <option>Row3</option>
+    <option>Row4</option>
+    <option>Row5</option>
+  </select>
+  <button id="moveRight">+</button>
+  <button id="moveLeft">-</button>
+  <select multiple style="height:150px">
+    <option>Row6</option>
+    <option>Row7</option>
+    <option>Row8</option>
+    <option>Row9</option>
+    <option>Row10</option>
+  </select>
+  <script>
+    //
+    document.querySelector('#moveRight').addEventListener('click', e => {
+      let target = document.querySelector('select:nth-of-type(2)');
+      while (true) {
+        let idx = document.querySelector('select').selectedIndex;
+        if (idx == -1) {
+          break;
+        }
+        target.appendChild(document.querySelectorAll('select option')[idx]);
+      }
+    });
+
+
+    document.querySelector('#moveLeft').addEventListener('click', e => {
+      while (true) {
+        let idx = document.querySelector('select:nth-of-type(2)').selectedIndex;
+        if (idx == -1) {
+          break;
+        }
+        let selectNum = document.querySelectorAll('select:nth-of-type(2) option')[idx];
+        document.querySelector('select').appendChild(selectNum);
+
+      }
+    });
+
+
+
+    //
+  </script>
+</body>
+
+</html>
