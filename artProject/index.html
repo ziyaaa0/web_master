@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index</title>
+  <style>
+    #container {
+      width: 600px;
+      margin: 0 auto;
+      padding: 160px;
+      text-align: center;
+    }
+
+
+    a {
+      color: black;
+      font-size: large;
+      text-decoration: none;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <table id="table">
+      <tr>
+        <td><img src="/artProject/img/main.png" alt="main" width="600px"></td>
+      </tr>
+      <tr>
+        <td><a href="login.html"><b>LOGIN ></b></a></td>
+      </tr>
+    </table>
+    <script src="/artProject/js/init0.js"></script>
+  </div>
+  <script>
+    localStorage.setItem('memberData', JSON.stringify(memberData));
+    localStorage.setItem('productData', JSON.stringify(productData));
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  </script>
+</body>
+
+</html>

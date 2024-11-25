@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예약확인</title>
+
+  <!-- Icon Font Stylesheet -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Libraries Stylesheet -->
+  <link href="css/lightbox.min.css" rel="stylesheet">
+  <link href="css/owl.carousel.min.css" rel="stylesheet">
+
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+
+<style>
+  h5{
+    padding: 30px;
+  }
+</style>
+
+</head>
+
+<body>
+
+  <h4>reservation</h4>
+  <div class="container-fluid py-5">
+    <div class="container py-5">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Exhibition</th>
+              <th scope="col">Author</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- begin of template -->
+
+            <!-- end of template -->
+          </tbody>
+        </table>
+      </div>
+      <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+        <h5 class="mb-0 ps-4 me-4">Total</h5>
+        <p class="mb-0 pe-4">$99.00</p>
+      </div>
+      <button id="btn btn-dark" type="button">결제하기</button>
+    </div>
+  </div>
+  
+  </div>
+  <script>
+    let cartData = JSON.parse(localStorage.getItem('cartData'));
+    const productData = JSON.parse(localStorage.getItem('productData'));
+
+    const logId = localStorage.getItem('logId');
+
+    const myCart = cartData.filter(cart => cart.id == logId);
+    console.log(cartData, logId)
+
+    myCart.forEach(cart => {
+      let prodInfo = productData.filter(prod => cart.pcode == prod.pcode)[0];
+      // const product = cartData.filter(prod => prod.pcode == cart.pcode)[0];
+
+      let template = ` <tr data-pcode="${cart.pcode}">
+                            <th scope="row">
+                                <p class="mb-0 mt-4">${prodInfo.pname}</p>
+                                </div>
+                            </th>
+                            <td>
+                                <p class="mb-0 mt-4">${prodInfo.author}</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">${prodInfo.price} won</p>
+                            </td>
+                            <td>
+                                <div class="input-group quantity mt-4" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm text-center border-0"
+                                        value="${cart.qty}">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4">${prodInfo.price*cart.qty}</p>
+                            </td>
+                            <td>
+                                <button id = "remove">
+                                   <img src="/artProject/img/x.svg" alt="">
+                                </button>
+                            </td>
+                            </tr>`;
+
+      document.querySelector('tbody').insertAdjacentHTML("beforeend", template);
+    });
+
+  
+
+    //+ 버튼 눌렀을때 수량 증가
+    document.querySelectorAll('i.fa-plus').forEach(plusIcon => {
+      plusIcon.addEventListener('click', e => {
+
+        let pcode = e.target.closest('tr').getAttribute('data-pcode');
+
+        console.dir(e.target.closest('div.quantity').children[1].value);
+        //현재수량 +1
+        let currentQty = parseInt(e.target.parentElement.parentElement.previousElementSibling.value);
+        currentQty++;
+        //e.target.parentElement.parentElement.previousElementSibling.value = currentQty;
+        e.target.closest('div.quantity').children[1].value = currentQty;
+        //가격
+        let price = e.target.closest('tr').children[2].firstElementChild.innerText;
+        price = parseInt(price.replace('원', ''));
+        console.dir(price * currentQty);
+
+        e.target.closest('tr').children[4].firstElementChild.innerText = price * currentQty + "원";
+
+        totalSum();
+        saveQty(logId, pcode, 1)
+      });
+    })
+
+
+
+    //- 버튼 
+
+    document.querySelectorAll('i.fa-minus').forEach(minusIcon => {
+      minusIcon.addEventListener('click', e => {
+        let pcode = e.target.closest('tr').getAttribute('data-pcode');
+
+
+
+        console.dir(e.target.closest('div.quantity').children[1].value);
+        //현재수량 -1
+        let currentQty = parseInt(e.target.closest('div.quantity').children[1].value);
+
+
+        if (currentQty > 1) {
+          currentQty--;
+          e.target.closest('div.quantity').children[1].value = currentQty;
+        } else {
+          alert('수량을 최소 1개 이상 입력해주세요')
+        }
+
+        let price = e.target.closest('tr').children[2].firstElementChild.innerText;
+        price = parseInt(price.replace('원', ''));
+        console.dir(price * currentQty);
+
+        e.target.closest('tr').children[4].firstElementChild.innerText = price * currentQty + "원";
+
+
+
+        totalSum();
+        saveQty(logId, pcode, -1)
+      });
+    })
+
+    //삭제 아이콘 클릭
+    document.querySelectorAll('#remove').forEach(icon => {
+      icon.addEventListener('click', e => {
+        let pcode = e.target.closest('tr').getAttribute('data-pname');
+        e.target.closest('tr').remove();
+        totalSum();
+
+        removeCart(logId, pcode, pname)
+      })
+    })
+
+    function saveQty(logId, pcode, qty) {
+      cartData.forEach(cart => {
+        if (cart.id == logId && cart.pcode == pcode) {
+          cart.qty += qty;
+        }
+      });
+      localStorage.setItem('cartData', JSON.stringify(cartData));
+    }
+
+
+    //변경된 정보 저장
+
+    function save(logId, pcode) {
+      cartData = cartData.filter(cart => (cart.pcode == pcode && cart.id == logId));
+      localStorage.setItem('cartData', JSON.stringify(cartData));
+
+    }
+    //합계 금액 계산.
+    function totalSum() {
+      //각 tr의 금액부분("4000원") -> "4000" 4000 변경후 합계
+      let sum = 0;
+      document.querySelectorAll('tr>td:nth-of-type(4)')
+        .forEach(item => {
+          let SubTotal = item.firstElementChild.innerText;
+          SubTotal = parseInt(SubTotal.replace("원", ""))
+          sum += SubTotal;
+        })
+      document.querySelector('p.mb-0.pe-4').innerText = sum + " 원";
+
+      //cart total의 total의 위치에 합산결과 출력.
+    }
+    totalSum();
+  </script>
+</body>
+
+</html>
