@@ -89,7 +89,7 @@
       font-size: 15px;
     }
     #pastExihibitBtn{
-      background-color: #000000;
+      background-color:  rgb(50, 255, 142);
       border: none;
       width: 200px;
       height: 44px;
@@ -97,8 +97,12 @@
       border-radius: 60px;
       margin-top: 60px;
     }
-    #abc{
+    #pastExihibitBtn.a{
       color: #fff;
+      
+    }
+    #abc{
+      color: #000;
     }
   </style>
 </head>
@@ -109,7 +113,7 @@
     <div class="row">
       <!-- beforeend row-->
     </div>
-    <button id="pastExihibitBtn"><a href="exhibit2.html" id="abc">지난전시 보기</a></button>
+    <button id="pastExihibitBtn"><a href="exhibit.html" id="abc">현재전시 보기</a></button>
   </div>
   <div id="pop_info_1" class="pop_wrap" style="display:none;">
     <div class="pop_inner">
@@ -120,60 +124,26 @@
   </div>
   
   <script>
-    let productData = JSON.parse(localStorage.getItem('productData'));
+    let productData2 = JSON.parse(localStorage.getItem('productData2'));
     let cartData = JSON.parse(localStorage.getItem('cartData'));
+    console.log(productData2)
+    productData2.forEach(product => {
 
-    productData.forEach(product => {
-
-      let template = `<div class="col" data-pcode="${product.pcode}">
+      let templates = `<div class="col" data-pcode="${product.pcodes}">
         <div class="card" style="width: 18rem;">
-          <img src="/artProject/img/${product.image}" class="card-img-top" alt="...">
+          <img src="/artProject/img/${product.images}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h6 class="card-title"><b>${product.pname}</b></h6>
-            <p>${product.author}<br>${product.price} won</p>      
-
+            <h6 class="card-title"><b>${product.pnames}</b></h6>
+            <p>${product.authors}<br>${product.price} won</p>
            
             <a href="#pop_info_1" id="detailBtn" class="btn btn-outline-dark">상세정보</a>
-            <a href="#" class="btn btn-dark">예약하기</a>
+            
           </div>
         </div>
       </div>`
-      document.querySelector('div.row').insertAdjacentHTML("beforeend", template)
+      document.querySelector('div.row').insertAdjacentHTML("beforeend", templates)
     })
 
-
-    document.querySelectorAll('a.btn-dark').forEach(item => {
-      item.addEventListener('click', e => {
-        //기본기능 차단.
-        console.log(e)
-        e.preventDefault();
-        let id = localStorage.getItem('logId');
-        let pcode = e.target.closest('div.col').getAttribute('data-pcode');
-        console.log(item, id, pcode);
-
-
-
-        let result = cartData.filter(cart => cart.id == id && cart.pcode == pcode);
-        if (result.length) {
-          //장바구니에 id, pcode 이미 있으면 수량증가.
-
-          cartData.forEach(cart => {
-            if (cart.id == id && cart.pcode == pcode && cart.qty < 5) {
-              cart.qty++; //기존 수량에 1더하기              
-              return;
-            }
-          })
-        } else {
-          //없으면 추가
-          cartData.push({
-            id: id,
-            pcode: pcode,
-            qty: 1
-          })
-        }
-        localStorage.setItem('cartData', JSON.stringify(cartData)); //스토리지에 저장
-      })
-    })
 
 
 
@@ -197,9 +167,9 @@
       item.addEventListener('click', e => {
         console.log(e.target.closest('div.card-body').children[0].firstElementChild.innerHTML)
         let artDetail = e.target.closest('div.card-body').children[0].firstElementChild.innerHTML;
-        artDetail = productData.filter(name => name.pname == artDetail)
-        document.querySelector('p.dsc').innerHTML = artDetail[0].detail;
-        console.log(productData)
+        artDetail = productData2.filter(name => name.pnames == artDetail)
+        document.querySelector('p.dsc').innerHTML = artDetail[0].details;
+        console.log(productData2)
       })
     })
 

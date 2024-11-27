@@ -45,7 +45,7 @@
 
 body {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Noto Sans Kr", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -81,10 +81,9 @@ h1,
 .h1 {
   margin-top: 0;
   margin-bottom: .5rem;
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
+  font-family: "Noto Sans Kr";
   line-height: 1.2;
-  color: #45595b
+  color: #000000
 }
 
 h1,
@@ -323,13 +322,7 @@ th {
   text-align: inherit;
   text-align: -webkit-match-parent
 }
-#remove{
-  background-color: #fff;
-}
 
-#remove img{
-  width: 30px;
-}
 
 thead,
 tbody,
@@ -6439,7 +6432,7 @@ fieldset:disabled .btn {
   z-index: 1070;
   display: block;
   max-width: 276px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Noto Sans Kr", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7803,7 +7796,8 @@ fieldset:disabled .btn {
 }
 
 .mt-4 {
-  margin-top: 1.5rem !important
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem !important
 }
 
 .mt-5 {
@@ -8173,7 +8167,7 @@ fieldset:disabled .btn {
 }
 
 .pe-4 {
-  padding-right: 1.5rem !important
+  padding-right: 8rem !important
 }
 
 .pe-5 {
@@ -8221,7 +8215,7 @@ fieldset:disabled .btn {
 }
 
 .ps-4 {
-  padding-left: 1.5rem !important
+  padding-left: 60rem !important
 }
 
 .ps-5 {

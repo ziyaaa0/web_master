@@ -6,10 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>index</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+      font-family: "Noto Sans Kr";
+    }
+
     #container {
       width: 600px;
       margin: 0 auto;
-      padding: 160px;
+      padding: 140px;
       text-align: center;
     }
 
@@ -19,12 +25,16 @@
       font-size: large;
       text-decoration: none;
     }
-    
+
+    p {
+      font-size: 36px;
+    }
   </style>
 </head>
 
 <body>
   <div id="container">
+    <p>ART MUSEUM</p>
     <table id="table">
       <tr>
         <td><img src="/artProject/img/main.png" alt="main" width="600px"></td>
@@ -38,6 +48,7 @@
   <script>
     localStorage.setItem('memberData', JSON.stringify(memberData));
     localStorage.setItem('productData', JSON.stringify(productData));
+    localStorage.setItem('productData2', JSON.stringify(productData2));
     localStorage.setItem('cartData', JSON.stringify(cartData));
   </script>
 </body>

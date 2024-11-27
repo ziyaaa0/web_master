@@ -11,15 +11,21 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
   </script>
   <style>
-    #container{
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+      font-family: "Noto Sans Kr";
+    }
+
+    #container {
       width: 1200px;
       margin: 0 auto;
-      padding: 100px;
+      padding-top: 100px;
       text-align: center;
     }
 
-    .row{
-      margin: 100px;
+    .row {
+      margin: 80px;
     }
 
     a {
@@ -29,20 +35,39 @@
       width: 200px;
     }
 
+    h6 {
+      float: right;
+    }
+    #footer{
+      background-color: black;
+      width: 1180px;
+      height: 100px;
+      color: aliceblue;
+      margin-top: 70px;
+    }
+    #footer p{
+      padding-top: 20px;
+      font-size: 14px;
+    }
+    span{
+      font-size: 30px;
+    }
   </style>
 </head>
 
 <body>
   <div id="container">
+
     <div class="container text-center">
       <h3>Art Museum</h3>
+
 
       <div class="row">
         <div class="col">
           <a class="btn btn-dark" href="exhibit.html">전시</a>
         </div>
         <div class="col">
-          <a class="btn btn-dark" href="notice.html">공지사항</a>
+          <a class="btn btn-dark" href="notice.html">리뷰</a>
         </div>
         <div class="col">
           <a class="btn btn-dark" href="reservation.html">나의 예약</a>
@@ -54,8 +79,24 @@
       <div class="col">
         <a href="login.html">Login Page ></a>
       </div>
+      <div id="footer">
+        <p> 
+          <span>ART MUSEUM</span><br>
+          © 2022 BY DAELIM CULTURAL FOUNDATION ALL RIGHT RESERVED.</p>
+
+      </div>
     </div>
   </div>
+
+
+  <script>
+    let logId = localStorage.getItem('logId');
+    document.querySelector('h6').innerText += `(${logId})`;
+
+    let logName = localStorage.getItem('logName');
+    console.log(logName)
+    alert(logName);
+  </script>
 </body>
 
 </html>

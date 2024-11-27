@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>예약확인</title>
+  <title>Reservation</title>
 
   <!-- Icon Font Stylesheet -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
@@ -21,19 +21,56 @@
   <!-- Template Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
 
-<style>
-  h5{
-    padding: 30px;
-  }
-</style>
+  <style>
+    #container{
+      padding-top: 100px;
+    }
+    td {
+      padding-top: 10px;
+    }
+
+    a img {
+      width: 34px;
+      height: 34px;
+      float: right;
+      margin-right: 100px;
+    }
+
+    span {
+      
+      padding: 100px;
+      font-size: 26px;
+      color: #000;
+    }
+
+    #payBtn {
+      float: right;
+      background-color: rgb(50, 255, 142);
+      width: 200px;
+      border-radius: 50px;
+      color: black;
+      border: none;
+    }
+
+    #remove {
+      background-color: #fff;
+      border: none;
+    }
+
+    #remove img {
+      width: 30px;
+    }
+  </style>
 
 </head>
 
 <body>
-
-  <h4>reservation</h4>
+  <div id="container">
+  <a href="main.html"><img src="/artProject/img/house-door-fill.svg" alt=""></a>
+  <p><span>Reservation</span></p>
   <div class="container-fluid py-5">
     <div class="container py-5">
+      
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -54,14 +91,14 @@
         </table>
       </div>
       <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-        <h5 class="mb-0 ps-4 me-4">Total</h5>
+        <h5 class="mb-0 ps-4 me-4">Total : </h5>
         <p class="mb-0 pe-4">$99.00</p>
       </div>
-      <button id="btn btn-dark" type="button">결제하기</button>
+      <button id="payBtn" class="btn btn-dark" type="button">결제하기</button>
     </div>
   </div>
-  
-  </div>
+
+  </div></div>
   <script>
     let cartData = JSON.parse(localStorage.getItem('cartData'));
     const productData = JSON.parse(localStorage.getItem('productData'));
@@ -96,7 +133,7 @@
                                     <input type="text" class="form-control form-control-sm text-center border-0"
                                         value="${cart.qty}">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                        <button id="del" class="btn btn-sm btn-plus rounded-circle bg-light border">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -106,16 +143,16 @@
                                 <p class="mb-0 mt-4">${prodInfo.price*cart.qty}</p>
                             </td>
                             <td>
-                                <button id = "remove">
+                                <button class="mb-0 mt-4" id = "remove">
                                    <img src="/artProject/img/x.svg" alt="">
                                 </button>
                             </td>
-                            </tr>`;
+                            </tr>`; 
 
       document.querySelector('tbody').insertAdjacentHTML("beforeend", template);
     });
 
-  
+
 
     //+ 버튼 눌렀을때 수량 증가
     document.querySelectorAll('i.fa-plus').forEach(plusIcon => {
@@ -124,11 +161,23 @@
         let pcode = e.target.closest('tr').getAttribute('data-pcode');
 
         console.dir(e.target.closest('div.quantity').children[1].value);
+
+
+
         //현재수량 +1
         let currentQty = parseInt(e.target.parentElement.parentElement.previousElementSibling.value);
-        currentQty++;
+
+
+        if (currentQty < 5) {
+          currentQty++;
+          e.target.closest('div.quantity').children[1].value = currentQty;
+        } else {
+          alert('최대 5매까지 예약가능합니다.')
+          currentQty;
+        }
+        // currentQty++;
         //e.target.parentElement.parentElement.previousElementSibling.value = currentQty;
-        e.target.closest('div.quantity').children[1].value = currentQty;
+        // e.target.closest('div.quantity').children[1].value = currentQty;
         //가격
         let price = e.target.closest('tr').children[2].firstElementChild.innerText;
         price = parseInt(price.replace('원', ''));
@@ -160,8 +209,10 @@
           currentQty--;
           e.target.closest('div.quantity').children[1].value = currentQty;
         } else {
-          alert('수량을 최소 1개 이상 입력해주세요')
+          alert('수량을 최소 1개 이상 입력해주세요.')
         }
+
+
 
         let price = e.target.closest('tr').children[2].firstElementChild.innerText;
         price = parseInt(price.replace('원', ''));

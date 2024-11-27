@@ -10,10 +10,102 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+      font-family: "Noto Sans Kr";
+    }
+
+    #show {
+      width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+      text-align: center;
+    }
+
+    a img {
+      width: 34px;
+      height: 34px;
+      float: right;
+      margin: 30px;
+    }
+    .table2 th{
+      background-color: black;
+      width: 1200px;
+      height: 50px;
+      color: aliceblue;
+    }
+    .table2 tr{
+      border: 1px solid darkgray;
+      width: 1200px;
+      height: 50px;
+    }
+  </style>
 </head>
 
 <body>
 
+
+  <div id="show">
+    <a href="main.html"><img src="/artProject/img/house-door-fill.svg" alt=""></a>
+    <h2>Review</h2>
+
+    <table class="table">
+      <tr>
+        <th>Exhibit</th>
+        <td><select class="form-select" name="friendBloodtype" id="">
+            <option value="해외교류전 [와엘 샤키]">해외교류전</option>
+            <option value="어미홀프로젝트 [칼 안드레]">어미홀프로젝트</option>
+            <option value="다티스트[이기칠]">다티스트</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td><input type="text" class="form-control" name="friendName" id=""></td>
+      </tr>
+      <tr>
+        <th>Review</th>
+        <td><input type="text" class="form-control" name="friendPhone" id=""></td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td><input type="date" class="form-control" name="friendBirth" id=""></td>
+      </tr>
+
+      <tr>
+        <td align="center" colspan="2">
+          <button class="btn btn-dark">글쓰기</button>
+          <button class="btn btn-dark">수정</button>
+          <button class="btn btn-outline-dark">선택삭제</button>
+        </td>
+      </tr>
+    </table>
+
+
+    <table class="table2">
+      <thead>
+        <tr>
+          <th><input type="checkbox" name="" id=""></th>
+          <th>Exhibit</th>
+          <th>Name</th>
+          <th>Review</th>
+          <th>Date</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="list">
+        <!-- <tr>
+        <td>박지희</td>
+        <td>010-1234-1234</td>
+        <td>1997-12-23</td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="/artProject/notice.js"></script>
 </body>
 
 </html>
